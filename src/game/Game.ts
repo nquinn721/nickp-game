@@ -1,5 +1,5 @@
-import { makeAutoObservable } from "mobx";
-import { Character } from "./Character";
+import { autorun, makeAutoObservable } from "mobx";
+import { Character, CharacterAbility } from "./Character";
 import { Enemy } from "./Enemy";
 
 export class Game {
@@ -18,9 +18,11 @@ export class Game {
     this.enemies.push(new Enemy(3, "skeleton"));
   }
 
-  characterAttack() {
+  characterAttack(character: Character, characterAbility: CharacterAbility) {
+    character.attack(characterAbility);
     const en = this.enemies[Math.floor(Math.random() * this.enemies.length)];
-    en.getAttacked(10);
-    setTimeout(() => this.characters[0].getAttacked(10), 2000);
+    en.getAttacked(characterAbility.damage);
+
+    autorun(() => character.getAttacked(10), { delay: 2000 });
   }
 }
