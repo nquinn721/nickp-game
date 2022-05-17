@@ -11,13 +11,20 @@ export class Game {
   gameOver: boolean = false;
   constructor() {
     makeAutoObservable(this);
-    this.init();
   }
 
   init() {
-    this.enemies.push(new Enemy(1, "orc"));
-    this.enemies.push(new Enemy(2, "goblin"));
-    this.enemies.push(new Enemy(3, "skeleton"));
+    console.log("init");
+    let x = 0;
+    while (this.enemies.length <= 2) {
+      x++;
+      this.enemies.push(
+        new Enemy(
+          this.enemyTypes[Math.floor(Math.random() * this.enemyTypes.length)]
+        )
+      );
+    }
+    console.log(this.enemies);
   }
 
   characterAttack(character: Character, characterAbility: CharacterAbility) {
@@ -53,6 +60,5 @@ export class Game {
 
   setCharacter(character: Character) {
     this.character = character;
-    console.log(this.character);
   }
 }

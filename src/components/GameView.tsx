@@ -4,8 +4,6 @@ import CharacterView from "./CharacterView";
 import EnemyView from "./EnemyView";
 
 const GameView = ({ game }: { game: Game }) => {
-  console.log("aekfjweoaifjweoai", game.character);
-
   return (
     <div>
       <div>Game {game.gameOver && "GAME OVER"}</div>

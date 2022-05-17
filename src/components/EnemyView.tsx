@@ -3,8 +3,6 @@ import { Enemy } from "../game/Enemy";
 import "./EnemyViewStyles.scss";
 
 const EnemyView = observer(({ enemy }: { enemy: Enemy }) => {
-  console.log("ENEMYVIWEW ", enemy.hp);
-
   return (
     <div
       className={`

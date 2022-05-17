@@ -5,8 +5,6 @@ import "./CharacterViewStyles.scss";
 
 const CharacterView = observer(
   ({ character, game }: { character: Character; game: Game }) => {
-    console.log(character);
-
     return (
       <div
         className={`${

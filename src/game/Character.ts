@@ -69,7 +69,6 @@ export class Character extends BaseCharacter {
 
   getAttacked(damage: number) {
     this.hp -= damage;
-    console.log("get attacked from character");
 
     this.getAttackedBase();
 
