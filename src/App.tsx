@@ -1,12 +1,22 @@
 import "./App.css";
-import GameView from "./components/GameView";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CharacterSelectScreen from "./screens/CharacterSelectScreen";
+import GameScreen from "./screens/GameScreen";
 import { Game } from "./game/Game";
-function App() {
+
+export default function App() {
   const game = new Game();
   return (
     <div className="App">
-      <GameView game={game} />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={<CharacterSelectScreen game={game} />}
+          ></Route>
+          <Route path="/game" element={<GameScreen game={game} />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
-export default App;

@@ -24,7 +24,7 @@ export class Character extends BaseCharacter {
   didCrit: boolean = false;
   abilities: CharacterAbility[] = [];
   isDead: boolean = false;
-  constructor(type: string) {
+  constructor(public type: string) {
     super();
     makeObservable(this, {
       abilities: observable,

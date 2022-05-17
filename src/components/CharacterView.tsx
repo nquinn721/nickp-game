@@ -5,7 +5,7 @@ import "./CharacterViewStyles.scss";
 
 const CharacterView = observer(
   ({ character, game }: { character: Character; game: Game }) => {
-    const charImage = "hero1";
+    console.log(character);
 
     return (
       <div
@@ -13,7 +13,10 @@ const CharacterView = observer(
           character.isBeingAttacked ? "enemy-damage" : ""
         } character`}
       >
-        <img src={`${charImage}.png`} />
+        <img
+          className="character-image"
+          src={`characters/${character.type}.png`}
+        />
         <div>HP: {character.hp}</div>
         <div>
           Attack

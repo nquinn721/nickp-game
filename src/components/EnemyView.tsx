@@ -12,7 +12,7 @@ const EnemyView = observer(({ enemy }: { enemy: Enemy }) => {
       ${enemy.isDead ? "enemy-dead" : ""}
       enemy`}
     >
-      {!enemy.isDead && <img src={`${enemy.type}.png`} />}
+      {!enemy.isDead && <img src={`enemies/${enemy.type}.png`} />}
       {enemy.isDead ? "Dead" : <div>HP: {enemy.hp}</div>}
     </div>
   );

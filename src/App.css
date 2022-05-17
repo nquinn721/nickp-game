@@ -8,6 +8,7 @@
   justify-content: space-around;
 }
 
-.enemy-damage {
-  box-shadow: 0 0 17px 1px red;
+.character-image {
+  width: 175px;
+  height: 150px;
 }

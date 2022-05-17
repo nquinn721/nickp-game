@@ -5,7 +5,8 @@ import { Enemy } from "./Enemy";
 export class Game {
   totalEnemies: number = 3;
   enemyTypes = ["goblin", "orc", "skeleton"];
-  characters: Character[] = [];
+  characters: Character[] = [new Character("mage"), new Character("ryuzaki")];
+  character: Character = new Character("mage");
   enemies: Enemy[] = [];
   gameOver: boolean = false;
   constructor() {
@@ -14,15 +15,12 @@ export class Game {
   }
 
   init() {
-    this.characters.push(new Character("mage"));
     this.enemies.push(new Enemy(1, "orc"));
     this.enemies.push(new Enemy(2, "goblin"));
     this.enemies.push(new Enemy(3, "skeleton"));
   }
 
   characterAttack(character: Character, characterAbility: CharacterAbility) {
-    console.log(this.gameOver);
-
     if (this.gameOver) return;
     const totalDamage = character.calculateAttackDamage(characterAbility);
     character.attack(characterAbility);
@@ -51,5 +49,10 @@ export class Game {
     if (en.isDead)
       en = this.enemies[Math.floor(Math.random() * this.enemies.length)];
     return en;
+  }
+
+  setCharacter(character: Character) {
+    this.character = character;
+    console.log(this.character);
   }
 }
