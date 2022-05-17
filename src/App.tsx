@@ -14,7 +14,10 @@ export default function App() {
             path="/"
             element={<CharacterSelectScreen game={game} />}
           ></Route>
-          <Route path="/game" element={<GameScreen game={game} />}></Route>
+          <Route
+            path="/game/:character"
+            element={<GameScreen game={game} />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

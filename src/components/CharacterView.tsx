@@ -13,8 +13,9 @@ const CharacterView = observer(
       >
         <img
           className="character-image"
-          src={`characters/${character.type}.png`}
+          src={`../characters/${character.type}.png`}
         />
+        <div>{character.type}</div>
         <div>HP: {character.hp}</div>
         <div>
           Attack

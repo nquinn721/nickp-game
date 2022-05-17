@@ -58,7 +58,10 @@ export class Game {
     return en;
   }
 
-  setCharacter(character: Character) {
-    this.character = character;
+  setCharacter(character: string | undefined) {
+    console.log(character);
+
+    if (character) this.character = new Character(character);
+    console.log("owiejfwoei", this.character);
   }
 }

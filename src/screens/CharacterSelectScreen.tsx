@@ -7,8 +7,7 @@ const CharacterSelectScreen = ({ game }: { game: Game }) => {
   const navigate = useNavigate();
 
   function startGame(character: Character) {
-    game.setCharacter(character);
-    navigate("/game");
+    navigate(`/game/${character.type}`);
   }
   return (
     <div>
