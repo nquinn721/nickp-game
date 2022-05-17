@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from "mobx";
+import { action, autorun, makeObservable, observable } from "mobx";
 
 export class BaseCharacter {
   isBeingAttacked: boolean = false;
@@ -6,11 +6,13 @@ export class BaseCharacter {
   constructor() {
     makeObservable(this, {
       getAttackedBase: action,
-      isBeingAttacked: observable
+      isBeingAttacked: observable,
     });
   }
   getAttackedBase() {
     this.isBeingAttacked = true;
-    setTimeout(() => (this.isBeingAttacked = false), this.showAttackTime);
+    autorun(() => (this.isBeingAttacked = false), {
+      delay: this.showAttackTime,
+    });
   }
 }

@@ -1,11 +1,15 @@
 import { autorun, makeObservable, observable } from "mobx";
 import { BaseCharacter } from "./BaseCharacter";
+import CharacterAbilities from "./data/characterAbilities";
 
 export interface CharacterAbility {
   name: string;
   damage: number;
   cd: number;
   ready: boolean;
+}
+export interface CharacterTypes {
+  mage: string;
 }
 
 export class Character extends BaseCharacter {
@@ -16,33 +20,17 @@ export class Character extends BaseCharacter {
   maxHP: number = 100;
   damage: number = 10;
   defense: number = 10;
-  armor: number = 10;
-  abilities: CharacterAbility[] = [
-    {
-      name: "Strike",
-      damage: 10,
-      cd: 2,
-      ready: true,
-    },
-    {
-      name: "Tornado",
-      damage: 20,
-      cd: 5,
-      ready: true,
-    },
-    {
-      name: "Super punch",
-      damage: 25,
-      cd: 10,
-      ready: true,
-    },
-  ];
-  constructor() {
+  crit: number = 5;
+  didCrit: boolean = false;
+  abilities: CharacterAbility[] = [];
+  isDead: boolean = false;
+  constructor(type: string) {
     super();
     makeObservable(this, {
       abilities: observable,
     });
     this.id = Math.random();
+    this.abilities = CharacterAbilities[type as keyof CharacterTypes];
   }
   attack(characterAbility: CharacterAbility) {
     const ch = this.abilities.find((v) => v.name === characterAbility.name);
@@ -65,10 +53,26 @@ export class Character extends BaseCharacter {
     );
   }
 
+  calculateAttackDamage(ability: CharacterAbility) {
+    const doesCrit = Math.random() * 100 < this.crit;
+    let critDamage = 1;
+    if (doesCrit) {
+      critDamage = 2;
+      this.didCrit = true;
+      autorun(() => (this.didCrit = false), { delay: 3000 });
+    }
+    return (
+      Math.round(Math.random() * this.lvl) * this.damage +
+      ability.damage * critDamage
+    );
+  }
+
   getAttacked(damage: number) {
     this.hp -= damage;
     console.log("get attacked from character");
 
     this.getAttackedBase();
+
+    if (this.hp <= 0) this.isDead = true;
   }
 }

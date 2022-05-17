@@ -11,10 +11,3 @@
 .enemy-damage {
   box-shadow: 0 0 17px 1px red;
 }
-.enemy {
-  margin-bottom: 10px;
-}
-
-.character {
-  height: 250px;
-}

@@ -1,9 +1,14 @@
-.character-ability {
-  background: black;
-  color: white;
-  border: 1px solid white;
-  cursor: pointer;
-  &:disabled {
-    background-color: red;
+.character {
+  height: 250px;
+
+  .character-ability {
+    background: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: red;
+    }
   }
 }
