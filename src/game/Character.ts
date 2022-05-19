@@ -26,6 +26,8 @@ export class Character extends BaseCharacter {
   isDead: boolean = false;
   constructor(public type: string) {
     super();
+    console.log("test");
+
     makeObservable(this, {
       abilities: observable,
     });
