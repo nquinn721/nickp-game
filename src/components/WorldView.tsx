@@ -1,5 +1,5 @@
 import './WorldViewStyles.scss';
-import worlddata from '../world/worlddata';
+import worlddata from '../game/world/worlddata';
 const textNode = <div id="text"></div>
 
 
